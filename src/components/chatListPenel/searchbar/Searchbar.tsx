@@ -76,7 +76,7 @@ function Searchbar() {
         <div className="searchbar-box">
             <input type="text" className="search-input form-control" placeholder="搜尋" />
             <button className="add-new-user-btn btn btn-outline-secondary" onClick={handleShowModal}>
-                <img src="/plus.png" alt="" />
+                <img src="./plus.png" alt="" />
             </button>
             {/* 按下新增使用者按鈕後會出現的Modal */}
             <Modal show={showAddNewUserModal} onHide={handleCloseModal} centered>

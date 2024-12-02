@@ -1,6 +1,6 @@
 // import { useState, useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "../../../customHook/reduxTypedHooks";
+import { useAppSelector } from "../../../customHook/reduxTypedHooks";
 import "./myInfo.scss";
 import { auth } from "../../../lib/firebase";
 import { toast } from "react-toastify";
@@ -36,7 +36,7 @@ function MyInfo() {
             <div className="btn-box">
                 <Dropdown>
                     <Dropdown.Toggle id="dropdown-basic" variant="secondary" >
-                        <img src="/more.png" alt="" />
+                        <img src="./more.png" alt="" />
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
@@ -48,7 +48,7 @@ function MyInfo() {
                     <img src="/more.png" alt="" />
                 </button> */}
                 <button className="btn">
-                    <img src="/edit.png" alt="" />
+                    <img src="./edit.png" alt="" />
                 </button>
             </div>
         </div>

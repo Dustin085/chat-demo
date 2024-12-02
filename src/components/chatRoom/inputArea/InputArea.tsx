@@ -68,9 +68,9 @@ function InputArea() {
         <form action="" onSubmit={handleSendMessage}>
 
             <div className="input-area p-2 p-md-3">
-                <button className="custom-btn"><img src="/img.png" alt="" /></button>
-                <button className="custom-btn"><img src="/camera.png" alt="" /></button>
-                <button className="custom-btn"><img src="/mic.png" alt="" /></button>
+                <button className="custom-btn"><img src="./img.png" alt="" /></button>
+                <button className="custom-btn"><img src="./camera.png" alt="" /></button>
+                <button className="custom-btn"><img src="./mic.png" alt="" /></button>
                 <input
                     type="text"
                     className="form-control"
@@ -81,7 +81,7 @@ function InputArea() {
                 />
                 <div className="custom-btn emoji-btn"
                     onClick={() => { setIsEmojiPickerOpen((prevState) => !prevState) }}>
-                    <img src="/emoji.png" alt="" />
+                    <img src="./emoji.png" alt="" />
                     <div className="emoji-picker">
                         <EmojiPicker
                             open={isEmojiPickerOpen}
