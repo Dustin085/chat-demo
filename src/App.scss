@@ -1,0 +1,44 @@
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
+
+.root-layout {
+    @media (min-width: 768px) {
+        height: 90%;
+    }
+
+    height: 100%;
+
+    // width: 90%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d8d8d8;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+// temp
+// .root-layout {
+//     .row {
+//         &>div {
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//             border: 1px solid;
+//         }
+//     }
+// }

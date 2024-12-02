@@ -1,0 +1,79 @@
+.message-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-end;
+    overflow: auto;
+
+    .message-item {
+        display: flex;
+        margin-bottom: 24px;
+        width: 80%;
+
+        // 訊息置底效果，使用justify-content:flex-end的話overflow會不正常生效
+        &:first-child {
+            margin-top: auto;
+        }
+
+        .user-avatar {
+            display: block;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 16px;
+            flex-shrink: 0;
+
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .message-box {
+            .picture {
+                display: block;
+                width: 100%;
+                height: 300px;
+                overflow: hidden;
+                border-radius: 10px;
+                margin-bottom: 10px;
+
+                img {
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .message {
+                padding: 16px;
+                border-radius: 12px;
+                margin-bottom: 4px;
+            }
+        }
+
+        &.message-from-other {
+            .message-box {
+                .message {
+                    background-color: rgba(9, 8, 24, 0.15);
+                }
+            }
+
+        }
+
+        &.message-from-me {
+            align-self: flex-end;
+            justify-content: flex-end;
+
+            .message-box {
+                .message {
+                    background-color: rgba(111, 134, 236, 0.75);
+                }
+            }
+
+        }
+    }
+
+}
