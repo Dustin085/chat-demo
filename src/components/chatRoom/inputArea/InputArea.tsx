@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EmojiPicker from "emoji-picker-react";
+import EmojiPicker, { Theme } from "emoji-picker-react";
 import "./inputArea.scss";
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
@@ -68,9 +68,9 @@ function InputArea() {
         <form action="" onSubmit={handleSendMessage}>
 
             <div className="input-area p-2 p-md-3">
-                <button className="custom-btn"><img src="./img.png" alt="" /></button>
+                {/* <button className="custom-btn"><img src="./img.png" alt="" /></button>
                 <button className="custom-btn"><img src="./camera.png" alt="" /></button>
-                <button className="custom-btn"><img src="./mic.png" alt="" /></button>
+                <button className="custom-btn"><img src="./mic.png" alt="" /></button> */}
                 <input
                     type="text"
                     className="form-control"
@@ -86,6 +86,8 @@ function InputArea() {
                         <EmojiPicker
                             open={isEmojiPickerOpen}
                             onEmojiClick={emojiClickHandler}
+                            width={"100%"}
+                            theme={Theme.DARK}
                         />
                     </div>
                 </div>

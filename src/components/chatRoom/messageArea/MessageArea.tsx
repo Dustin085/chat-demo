@@ -17,60 +17,14 @@ function MessageArea() {
         };
     }, [chatData]);
 
-
-    const demoMesFromOther = {
-        avatarUrl: "/avatar.png",
-        message: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero harum exercitationem obcaecati voluptatem dolorum aperiam quia excepturi totam quam consequatur magnam, ab aliquam unde quidem illum, nam quos, suscipit debitis?",
-        time: "50分鐘之前"
-    };
-
-    const demoMesFromMe = {
-        message: "Hello World. Nice to meet you too.",
-        time: "50分鐘之前"
-    };
-
-    const demoMesFromOtherWithImg = {
-        avatarUrl: "/avatar.png",
-        message: "Look, a picture!",
-        imgUrl: "/defaultUserAvatar.jpg",
-        time: "50分鐘之前"
-    };
-
-    const demoMesFromMeWithImg = {
-        message: "Look, the same picture!",
-        imgUrl: "/defaultUserAvatar.jpg",
-        time: "50分鐘之前"
-    }
-
     return (
         <div className="message-area pe-2">
-            {/* <div className="message-item message-from-other">
-                <picture className="user-avatar">
-                    <img src="/avatar.png" alt="" />
-                </picture>
-                <div className="message-box">
-                    <div className="message">
-                        Hello World. You are great!
-                    </div>
-                    <small className="time text-muted">48分鐘之前</small>
-                </div>
-            </div> */}
             {
                 chatData &&
                 chatData.messages.map((message) => {
                     return <Message key={message.createdAt} data={message} fromWho={message.senderId === currentUserData.id ? "me" : "other"} />
                 })
             }
-            {/* <Message data={demoMesFromOther} fromWho="other" />
-            <Message data={demoMesFromMe} fromWho="me" />
-            <Message data={demoMesFromOther} fromWho="other" />
-            <Message data={demoMesFromMe} fromWho="me" />
-            <Message data={demoMesFromOther} fromWho="other" />
-            <Message data={demoMesFromMe} fromWho="me" />
-            <Message data={demoMesFromOther} fromWho="other" />
-            <Message data={demoMesFromMe} fromWho="me" />
-            <Message data={demoMesFromOtherWithImg} fromWho="other" />
-            <Message data={demoMesFromMeWithImg} fromWho="me" /> */}
             {/* 用來定位訊息區最尾端 */}
             <div className="end-location" ref={messageAreaEndLocation}></div>
         </div>
@@ -110,11 +64,36 @@ function Message({ data, fromWho }: {
     }
 
     function MessageBox() {
+        const covertTimeFromMsecToLocalString = (time: number): string => {
+            let result = "";
+            const createdAtDate = new Date(time);
+            const nowTime = new Date();
+            // 判斷是否是今天的訊息
+            if (createdAtDate.getFullYear() === nowTime.getFullYear() &&
+                createdAtDate.getMonth() === nowTime.getMonth() &&
+                createdAtDate.getDay() === nowTime.getDay()) {
+                result = `今天 ${createdAtDate.toLocaleTimeString(undefined, { timeStyle: "short" })}`;
+            } else {
+                // 如果是同一年就不顯示年份
+                if (createdAtDate.getFullYear() === nowTime.getFullYear()) {
+                    result = new Date(time).toLocaleString(undefined, {
+                        month: 'short',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                } else {
+                    result = new Date(time).toLocaleDateString(undefined, { dateStyle: "short", timeStyle: "short" })
+                }
+            };
+            return result;
+        };
+        const stringTime = covertTimeFromMsecToLocalString(Number(createdAt));
         return (
             <div className="message-box">
                 {imgUrl && <picture className="picture"><img src={imgUrl} alt="" /></picture>}
                 <div className="message">{text}</div>
-                <small className="time text-muted">{createdAt}</small>
+                <small className="time text-muted">{stringTime}</small>
             </div>
         )
     }

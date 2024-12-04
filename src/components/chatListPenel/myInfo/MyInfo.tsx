@@ -36,11 +36,11 @@ function MyInfo() {
             <div className="btn-box">
                 <Dropdown>
                     <Dropdown.Toggle id="dropdown-basic" variant="secondary" >
-                        <img src="./more.png" alt="" />
+                        <img src="./more.svg" alt="" style={{ rotate: "90deg", widows: "60%", height: "60%" }} />
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item as="button"  disabled={true}>修改使用者資料</Dropdown.Item>
+                        <Dropdown.Item as="button" disabled={true}>修改使用者資料</Dropdown.Item>
                         <Dropdown.Item as="button" className="log-out-btn" onClick={handleLogOut}>登出</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>

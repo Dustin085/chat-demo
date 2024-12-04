@@ -1,13 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './userSlice';
-import panelSwitchReducer from './panelSwitchSlice';
 import chatReducer from './chatSlice';
+import panelSwitchReducer from './panelSwitchSlice';
+import layoutSwitchReducer from './layoutSwitchSlice';
+
 
 const store = configureStore({
     reducer: {
         user: userReducer,
         panelSwitch: panelSwitchReducer,
         chat: chatReducer,
+        layoutSwitch: layoutSwitchReducer
     },
 });
 

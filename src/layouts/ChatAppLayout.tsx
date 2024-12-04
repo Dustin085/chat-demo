@@ -6,15 +6,16 @@ import { useAppSelector } from "../customHook/reduxTypedHooks";
 // interface
 import { ReactElement } from "react";
 
-function ChatAppLayout({ windowSize }: { windowSize: string }) {
+function ChatAppLayout() {
 
+    const currentLayout = useAppSelector(state => state.layoutSwitch.currentLayout);
     const currentUserData = useAppSelector((state) => state.user.currentUserData);
     const isLoadingUserData = useAppSelector((state) => state.user.isLoadingUserData);
 
     let rwdLayout: ReactElement | null = null;
-    if (windowSize === "desktop") {
+    if (currentLayout === "desktop") {
         rwdLayout = <DeskTopLayout />
-    } else if (windowSize === "mobile") {
+    } else if (currentLayout === "mobile") {
         rwdLayout = <MobileLayout />
     };
 

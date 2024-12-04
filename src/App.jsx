@@ -1,6 +1,6 @@
 import './App.scss';
 import 'bootstrap/dist/js/bootstrap';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 // firebase
 import { onAuthStateChanged } from 'firebase/auth';
@@ -17,10 +17,12 @@ import { fetchUserDataById } from './lib/userSlice';
 
 // custom hooks
 import { useAppDispatch } from './customHook/reduxTypedHooks'
+import { layoutSwitch } from './lib/layoutSwitchSlice';
 
 function App() {
 
-  const [windowSize, setWindowSize] = useState("mobile");
+
+  // const [windowSize, setWindowSize] = useState("mobile");
   const breakPointMd = 769;
 
   const dispatch = useAppDispatch();
@@ -42,21 +44,22 @@ function App() {
     window.addEventListener("resize", () => {
       checkWindowSize();
     });
-  }, []);
+    // 確認現在的視窗寬度
+    function checkWindowSize() {
+      if (window.innerWidth < breakPointMd) {
+        dispatch(layoutSwitch.actions.updateState("mobile"));
+      } else {
+        dispatch(layoutSwitch.actions.updateState("desktop"));
+      }
+    };
+  }, [dispatch]);
 
-  // 確認現在的視窗寬度
-  function checkWindowSize() {
-    if (window.innerWidth < breakPointMd) {
-      setWindowSize("mobile");
-    } else {
-      setWindowSize("desktop");
-    }
-  }
+
 
   return (
     <div className="root-wrap vh-100 d-flex justify-content-center align-items-center">
       <div className="root-layout container-md rounded border">
-        <ChatAppLayout windowSize={windowSize} />
+        <ChatAppLayout />
       </div>
       <Notification />
     </div>

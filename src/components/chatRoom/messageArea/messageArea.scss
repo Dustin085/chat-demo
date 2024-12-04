@@ -68,6 +68,10 @@
             justify-content: flex-end;
 
             .message-box {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+
                 .message {
                     background-color: rgba(111, 134, 236, 0.75);
                 }

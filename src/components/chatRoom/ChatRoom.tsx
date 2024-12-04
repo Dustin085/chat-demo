@@ -62,6 +62,14 @@ function ChatRoom() {
         };
     }, [chatId]);
 
+    if (!chatId) {
+        return (
+            <div className="chat-room-box" style={{ alignItems: "center", justifyContent: "center" }}>
+                <h2>請選擇聊天室</h2>
+            </div>
+        )
+    }
+
     return (
         <div className="chat-room-box">
             <UserInfo />
