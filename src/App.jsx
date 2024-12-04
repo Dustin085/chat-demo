@@ -23,7 +23,7 @@ function App() {
 
 
   // const [windowSize, setWindowSize] = useState("mobile");
-  const breakPointMd = 769;
+  const breakPointMd = 1280;
 
   const dispatch = useAppDispatch();
 
