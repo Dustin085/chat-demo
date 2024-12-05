@@ -57,7 +57,7 @@ function App() {
 
 
   return (
-    <div className="root-wrap vh-100 d-flex justify-content-center align-items-center">
+    <div className="root-wrap d-flex justify-content-center align-items-center" style={{ height: "100dvh" }}>
       <div className="root-layout container-md rounded border">
         <ChatAppLayout />
       </div>
