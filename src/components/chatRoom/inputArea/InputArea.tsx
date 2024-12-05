@@ -88,6 +88,7 @@ function InputArea() {
                             onEmojiClick={emojiClickHandler}
                             width={"100%"}
                             theme={Theme.DARK}
+                            autoFocusSearch={false}
                         />
                     </div>
                 </div>

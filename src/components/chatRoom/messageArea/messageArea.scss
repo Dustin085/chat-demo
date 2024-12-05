@@ -56,6 +56,10 @@
 
         &.message-from-other {
             .message-box {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+
                 .message {
                     background-color: rgba(9, 8, 24, 0.15);
                 }
