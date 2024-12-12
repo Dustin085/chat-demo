@@ -5,6 +5,10 @@
     justify-content: center;
     align-items: center;
 
+    .warning {
+        color: rgb(209, 209, 93);
+    }
+
     form {
         display: flex;
         flex-direction: column;

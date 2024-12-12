@@ -26,6 +26,9 @@ function loginPanel() {
                 {fromSwitch === "login" && `歡迎使用${brandName}`}
                 {fromSwitch === "register" && `註冊新的${brandName}帳號`}
             </h2>
+            <p className="warning">
+                {fromSwitch === "register" && `此網站目前為測試階段，請不要使用自己常用的密碼，且註冊時可以使用不存在的email`}
+            </p>
             {fromSwitch === "login" && <LoginForm />}
             {fromSwitch === "register" && <RegisterForm />}
         </div>

@@ -71,7 +71,7 @@ function Message({ data, fromWho }: {
             // 判斷是否是今天的訊息
             if (createdAtDate.getFullYear() === nowTime.getFullYear() &&
                 createdAtDate.getMonth() === nowTime.getMonth() &&
-                createdAtDate.getDay() === nowTime.getDay()) {
+                createdAtDate.getDate() === nowTime.getDate()) {
                 result = `今天 ${createdAtDate.toLocaleTimeString(undefined, { timeStyle: "short" })}`;
             } else {
                 // 如果是同一年就不顯示年份
