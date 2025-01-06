@@ -85,6 +85,10 @@ function ChatList() {
         }
     ]
 
+    /**
+     * @property { Array<ChatListItem> | undefined } chatList - state，裝有本使用者的聊天室清單
+     * @property { IUserData } currentUser - 從資料庫取得的本使用者資料 
+     */
     const [chatList, setChatList] = useState<Array<ChatListItem> | undefined>();
 
     const currentUser = useAppSelector(state => state.user.currentUserData) as IUserData;
@@ -96,6 +100,9 @@ function ChatList() {
         }
 
         // 監聽，當資料發生改變時觸發callback function
+        /**
+         * 建立監聽，當本使用者的userChats改變時觸發，載入新的聊天室列表資料
+         */
         const unsub = onSnapshot(doc(db, "userChats", currentUser.id), async (res) => {
             // 紀錄回傳資料
             const resChatList = res.data()?.chats as Array<ChatListItem>;
@@ -137,6 +144,9 @@ function ChatList() {
 
         const dispatch = useAppDispatch();
 
+        /**
+         * 將isSeen改成true，改變chatSlice裡面的chatId，切換成chatRoomPanel，chatRoomPanel會接續載入聊天室的工作
+         */
         const handleChatSelect = async () => {
             // 將isSeen改成true
             if (chatList) {

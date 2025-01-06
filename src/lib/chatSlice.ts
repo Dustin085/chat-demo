@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUserData } from "./userSlice";
+// See database structure here: https://app.eraser.io/workspace/Hvnil7FOFo9t2fpKkSAU
 
 // Define a type for the slice state
 interface IChatState {

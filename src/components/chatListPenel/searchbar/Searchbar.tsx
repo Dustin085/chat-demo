@@ -16,21 +16,17 @@ import { IUserData } from "../../../lib/userSlice";
 import useInputData from "../../../customHook/useInputData";
 import { useAppSelector } from "../../../customHook/reduxTypedHooks";
 
+/**
+ * 搜尋現有聊天室的搜尋欄(搜尋功能尚未實作)，除此之外還有一個新增聊天室的按鈕，按下後彈出視窗來搜尋其他使用者
+ * @returns - react component
+ */
 function Searchbar() {
 
-    const demoUserList = [
-        {
-            id: "1",
-            name: "Dustin",
-            avatarUrl: "/avatar.png"
-        },
-        {
-            id: "2",
-            name: "Ninja",
-            avatarUrl: "/avatar.png"
-        }
-    ];
-
+    /**
+     * @property { IUserData } currentUserData - 現在登入的使用者資料
+     * @property { boolean } showAddNewUserModal - state，用來控制是否要顯示搜尋/新增其他使用者的視窗
+     * @property { Array<IUserData> | null } searchUserList - state，用來裝搜尋其他使用者的搜尋結果
+     */
     // 如果能夠執行到這裡currentUserData就一定存在(登入狀態)，故使用as(型別斷言)
     const currentUserData = useAppSelector(state => state.user.currentUserData) as IUserData;
 
@@ -44,6 +40,10 @@ function Searchbar() {
 
     const { inputs, handleInputChange } = useInputData({ searchUserName: "" });
 
+    /**
+     * 從資料庫中依照 inputs.searchUserName 來搜尋使用者，並且將結果放入searchUserList，若無結果則跳出通知並且清空searchUserList
+     * @param ev - 搜尋表單事件
+     */
     const handleSearchUser = async (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
 

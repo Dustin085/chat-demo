@@ -21,13 +21,17 @@ import { layoutSwitch } from './lib/layoutSwitchSlice';
 
 function App() {
 
-
-  // const [windowSize, setWindowSize] = useState("mobile");
+  /**
+   * @property {number} breakPointMd - md的斷點，單位為px
+   */
   const breakPointMd = 1280;
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    /**
+     * 當Auth改變時使用user.uid來fetch新的使用者資料，若user為undefined則會把currentUserData設為null，詳情請見 ./src/lib/userSlice.ts
+     */
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       // below line is equal to user ? user.uid : undefined
       dispatch(fetchUserDataById(user?.uid));
@@ -44,7 +48,10 @@ function App() {
     window.addEventListener("resize", () => {
       checkWindowSize();
     });
-    // 確認現在的視窗寬度
+
+    /**
+     * 確認現在的視窗寬度，並且在改變layoutSwitch中的state
+     */
     function checkWindowSize() {
       if (window.innerWidth < breakPointMd) {
         dispatch(layoutSwitch.actions.updateState("mobile"));
@@ -52,6 +59,7 @@ function App() {
         dispatch(layoutSwitch.actions.updateState("desktop"));
       }
     };
+    
   }, [dispatch]);
 
 

@@ -5,6 +5,10 @@ import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import { useAppSelector } from "../../../customHook/reduxTypedHooks";
 
+/**
+ * 聊天室的輸入區域
+ * @returns - react component
+ */
 function InputArea() {
 
     const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
@@ -14,10 +18,20 @@ function InputArea() {
         setInputText(prevState => { return prevState + ev.emoji });
     };
 
+    /**
+     * @property { string | null } chatId - 現在使用的聊天室id
+     * @property { IUserData } currentUserData - 本使用者資料 
+     * @property { string } receiverId - 對方的id
+     */
     const chatId = useAppSelector(state => state.chat.chatId);
     const currentUser = useAppSelector(state => state.user.currentUserData);
     const receiverId = useAppSelector(state => state.chat.receiverId) as string;
 
+    /**
+     * 判斷輸入字串是否有效，有效則更新資料庫，先更新chats(加入新的message)，再更新雙方使用者的userChats(變更isSeen、lastMessage和updateAt)
+     * @param {React.FormEvent<HTMLFormElement>} ev - 表單事件 
+     * @returns 
+     */
     const handleSendMessage = async (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
         if (inputText === "") return;

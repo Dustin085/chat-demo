@@ -5,14 +5,25 @@ import "./myInfo.scss";
 import { auth } from "../../../lib/firebase";
 import { toast } from "react-toastify";
 
+/**
+ * 顯示使用者資料的區塊，組件內含一個下拉式選單裡面有登出按鈕
+ * @returns - react component
+ */
 function MyInfo() {
 
+    /**
+     * @property { string } userName - 從資料庫取得的currentUserData裡面擷取出來的userName(使用者名稱)
+     */
     const userName = useAppSelector((state) => {
         if (state.user.currentUserData) {
             return state.user.currentUserData.userName;
         }
     });
 
+    /**
+     * 處理登出，登出成功或登出錯誤時會跳出通知
+     * @param ev - 點擊事件
+     */
     const handleLogOut = (ev: React.MouseEvent) => {
         ev.preventDefault();
         auth.signOut()

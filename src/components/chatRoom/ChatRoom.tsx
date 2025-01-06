@@ -19,7 +19,10 @@ import { useAppDispatch, useAppSelector } from "../../customHook/reduxTypedHooks
 // interface
 import { IUserData } from "../../lib/userSlice";
 
-
+/**
+ * 聊天室主體，包含一個輸入框、聊天訊息區還有對方的資料
+ * @returns - react component
+ */
 function ChatRoom() {
 
     const chatId = useAppSelector(state => state.chat.chatId);
@@ -29,6 +32,9 @@ function ChatRoom() {
     // 取得聊天訊息
     useEffect(() => {
         if (chatId) {
+            /**
+             * 取得對方(聊天對象)的資料
+             */
             const getReceiverData = async () => {
                 const userChatsRef = doc(db, "userChats", currentUserData.id as string);
                 const userChatsSnapShot = await getDoc(userChatsRef);
@@ -48,10 +54,12 @@ function ChatRoom() {
             };
             getReceiverData();
 
+            /**
+             * 監聽資料庫的聊天室資料，已達到即時改變聊天訊息
+             */
             const unSub = onSnapshot(
                 doc(db, "chats", chatId),
                 (res) => {
-                    // 現在似乎會不正常的觸發好幾次，似乎只是開發工具重播時的影響，有待觀察
                     dispatch(chatSlice.actions.updateChatData(res.data() as IChatData));
                     // console.log(res.data());
                 });

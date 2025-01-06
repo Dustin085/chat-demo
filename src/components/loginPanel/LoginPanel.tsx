@@ -13,8 +13,17 @@ import { doc, setDoc } from "firebase/firestore";
 // custom hooks
 import useInputData from "../../customHook/useInputData";
 
+/**
+ * 登入和註冊面板
+ * @returns - react component
+ */
 function loginPanel() {
 
+    /**
+     * @property { "login" | "register" } fromSwitch - state，控制顯示登入面板或是註冊面板
+     * @property { boolean } isLoading - state，判斷現在是否在loading，依此來disabled按鈕等等
+     * @property { string } brandName - 產品名稱
+     */
     const [fromSwitch, setFromSwitch] = useState<"login" | "register">("login");
     const [isLoading, setIsLoading] = useState(false);
 

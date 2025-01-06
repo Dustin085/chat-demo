@@ -6,6 +6,11 @@ import { IUserData } from "../../../lib/userSlice";
 
 function MessageArea() {
 
+    /**
+     * @property { HTMLDivElement | null } messageAreaEndLocation - 用來定位聊天室末端的元素
+     * @property { IChatData | null } chatData - 聊天室資料，包含聊天訊息
+     * @property { IUserData } currentUserData - 本使用者資料
+     */
     const messageAreaEndLocation = useRef<HTMLDivElement | null>(null);
     const chatData = useAppSelector(state => state.chat.chatData);
     const currentUserData = useAppSelector(state => state.user.currentUserData) as IUserData;
@@ -31,6 +36,11 @@ function MessageArea() {
     );
 }
 
+/**
+ * 利用訊息資料與fromWho建立訊息組件
+ * @param { { data: IMessage, fromWho: "me"|"other" } } props - {data - 訊息資料, fromWho - 判斷訊息是來自自己或其他人}
+ * @returns - react component
+ */
 function Message({ data, fromWho }: {
     data: IMessage,
     fromWho: "me" | "other"
@@ -63,6 +73,10 @@ function Message({ data, fromWho }: {
         )
     }
 
+    /**
+     * 子組件，顯示訊息並且將建立時間轉換成字串
+     * @returns - react component
+     */
     function MessageBox() {
         const covertTimeFromMsecToLocalString = (time: number): string => {
             let result = "";
@@ -83,7 +97,7 @@ function Message({ data, fromWho }: {
                         minute: '2-digit'
                     });
                 } else {
-                    result = new Date(time).toLocaleDateString(undefined, { dateStyle: "short", timeStyle: "short" })
+                    result = new Date(time).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' })
                 }
             };
             return result;

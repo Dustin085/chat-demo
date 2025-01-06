@@ -2,13 +2,23 @@ import "./userInfo.scss";
 import { useAppDispatch, useAppSelector } from "../../../customHook/reduxTypedHooks";
 import { panelSwitch } from "../../../lib/panelSwitchSlice";
 
-
+/**
+ * 顯示對方的資料，此外在手機板會有一個返回按鍵，可返回至聊天室清單
+ * @returns - react component
+ */
 function UserInfo() {
 
+    /**
+     * @property { "mobile" | "desktop" } currentLayout - 從redux取得的state，用來表示現在要使用的layout
+     * @property { IUserData } receiverData - 對方的使用者資料
+     */
     const currentLayout = useAppSelector(state => state.layoutSwitch.currentLayout);
     const receiverData = useAppSelector(state => state.chat.receiverData);
     const dispatch = useAppDispatch();
 
+    /**
+     * 返回聊天室清單
+     */
     const handleBackToChatList = () => {
         dispatch(panelSwitch.actions.updateState("chatListPanel"));
     };
